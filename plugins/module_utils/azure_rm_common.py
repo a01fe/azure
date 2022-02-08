@@ -1037,7 +1037,7 @@ class AzureRMModuleBase(object):
             self._management_group_client = self.get_mgmt_svc_client(ManagementGroupsClient,
                                                                      base_url=self._cloud_environment.endpoints.resource_manager,
                                                                      suppress_subscription_id=True,
-                                                                     api_version='2020-05-01')
+                                                                     api_version='2018-11-01')
         return self._management_group_client
 
     @property
