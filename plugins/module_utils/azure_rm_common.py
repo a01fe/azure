@@ -1047,7 +1047,7 @@ class AzureRMModuleBase(object):
             self._management_group_client = self.get_mgmt_svc_client(ManagementGroupsClient,
                                                                      base_url=self._cloud_environment.endpoints.resource_manager,
                                                                      suppress_subscription_id=True,
-                                                                     api_version='2020-05-01')
+                                                                     api_version='2018-11-01')
         return self._management_group_client
 
     @property
@@ -1056,7 +1056,7 @@ class AzureRMModuleBase(object):
         if not self._network_client:
             self._network_client = self.get_mgmt_svc_client(NetworkManagementClient,
                                                             base_url=self._cloud_environment.endpoints.resource_manager,
-                                                            api_version='2020-06-01')
+                                                            api_version='2018-11-01')
         return self._network_client
 
     @property
