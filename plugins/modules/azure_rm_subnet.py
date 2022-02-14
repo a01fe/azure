@@ -354,9 +354,11 @@ def subnet_to_dict(subnet):
         address_prefixes=subnet.address_prefixes,
         network_security_group=dict(),
         route_table=dict(),
-        private_endpoint_network_policies=subnet.private_endpoint_network_policies,
-        private_link_service_network_policies=subnet.private_link_service_network_policies,
-        nat_gateway=None
+        # TODO: API Version in azurestackhub does not have private_link_service_network_policies, just give it None
+        # private_endpoint_network_policies=subnet.private_endpoint_network_policies,
+        # private_link_service_network_policies=subnet.private_link_service_network_policies
+        private_endpoint_network_policies=None,
+        private_link_service_network_policies=None
     )
     if subnet.network_security_group:
         id_keys = azure_id_to_dict(subnet.network_security_group.id)

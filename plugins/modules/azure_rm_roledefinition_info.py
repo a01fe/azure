@@ -137,18 +137,18 @@ def roledefinition_to_dict(role):
     result = dict(
         id=role.id,
         name=role.name,
-        type=role.role_type,
-        assignable_scopes=role.assignable_scopes,
-        description=role.description,
-        role_name=role.role_name
+        type=None,
+        assignable_scopes=None,
+        description=None,
+        role_name=None
     )
-    if role.permissions:
-        result['permissions'] = [dict(
-            actions=p.actions,
-            not_actions=p.not_actions,
-            data_actions=p.data_actions,
-            not_data_actions=p.not_data_actions
-        ) for p in role.permissions]
+    # if role.permissions:
+    #     result['permissions'] = [dict(
+    #         actions=p.actions,
+    #         not_actions=p.not_actions,
+    #         data_actions=p.data_actions,
+    #         not_data_actions=p.not_data_actions
+    #     ) for p in role.permissions]
     return result
 
 
@@ -198,7 +198,7 @@ class AzureRMRoleDefinitionInfo(AzureRMModuleBase):
         # get management client
         self._client = self.get_mgmt_svc_client(AuthorizationManagementClient,
                                                 base_url=self._cloud_environment.endpoints.resource_manager,
-                                                api_version="2018-01-01-preview")
+                                                api_version="2015-07-01")
 
         if self.id:
             self.results['roledefinitions'] = self.get_by_id()
@@ -235,7 +235,7 @@ class AzureRMRoleDefinitionInfo(AzureRMModuleBase):
                 roles = []
 
                 if self.type:
-                    roles = [r for r in response if r.role_type == self.type]
+                    roles = [r for r in response]
                 else:
                     roles = response
 
